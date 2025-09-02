@@ -1,0 +1,36 @@
+server:
+  port: 8080
+  servlet:
+    context-path: /api
+
+spring:
+  application:
+    name: NoteBook
+  datasource:
+    url: jdbc:mysql://192.168.3.11:3306/notebook?autoReconnect=true&useUnicode=true&characterEncoding=utf8&serverTimezone=GMT%2B8&ssl-mode=REQUIRED
+    username: username
+    password: password
+    hikari:
+      pool-name: DateHikariCP
+      minimum-idle: 8
+      idle-timeout: 180000
+      maximum-pool-size: 20
+      auto-commit: true
+      max-lifetime: 1800000
+      connection-timeout: 30000
+      connection-test-query: SELECT 1
+
+mybatis-plus:
+  global-config:
+    db-config:
+      id-type: auto
+      update-strategy: not_null
+      logic-delete-field: del_flag
+      logic-delete-value: 1
+      logic-not-delete-value: 0
+  configuration:
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+    map-underscore-to-camel-case: true
+    cache-enabled: false
+    default-enum-type-handler: com.baomidou.mybatisplus.core.handlers.MybatisEnumTypeHandler
+
